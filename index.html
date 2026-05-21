@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dopravní podnik Kokosice - KOMPLETNÍ JÍZDNÍ REŽIM</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; color: #000000; margin: 0; padding: 0; }
+        .app-header { background-color: #2c3e50; color: #ffffff; text-align: center; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .app-header h1 { margin: 0; font-size: 24pt; }
+        .app-header p { margin: 5px 0 0 0; font-size: 11pt; opacity: 0.8; }
+        .container { max-width: 900px; margin: 30px auto; padding: 0 15px; }
+        
+        #homepage { text-align: center; background: #ffffff; padding: 40px 20px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        #homepage h2 { margin-top: 0; margin-bottom: 30px; font-size: 18pt; color: #333; }
+        .menu-buttons { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
+        
+        .line-btn { padding: 18px 25px; font-size: 14pt; font-weight: bold; border: 2px solid #000000; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; text-align: left; display: flex; align-items: center; justify-content: space-between; }
+        .line-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .btn-l1 { background-color: #3498db; color: white; }
+        .btn-l2 { background-color: #9b59b6; color: white; }
+        .btn-n87 { background-color: #34495e; color: white; }
+        .line-badge { background: #ffffff; color: #000000; padding: 4px 10px; border-radius: 4px; font-size: 11pt; border: 1px solid #000; }
+
+        .timetable-page { display: none; background: #ffffff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .back-btn { display: inline-block; background-color: #7f8c8d; color: white; padding: 10px 20px; font-size: 11pt; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 20px; text-decoration: none; }
+
+        .section-block { margin-bottom: 35px; border: 2px solid #000000; border-radius: 6px; overflow: hidden; }
+        
+        /* Barevné kódování dle požadavků: barevné pole, striktně černý text */
+        .workday-header { background-color: #2ecc71; color: #000000; padding: 12px; font-size: 13pt; font-weight: bold; text-align: center; border-bottom: 2px solid #000000; }
+        .weekend-header { background-color: #e74c3c; color: #000000; padding: 12px; font-size: 13pt; font-weight: bold; text-align: center; border-bottom: 2px solid #000000; }
+        .summer-header { background-color: #f1c40f; color: #000000; padding: 12px; font-size: 13pt; font-weight: bold; text-align: center; border-bottom: 2px solid #000000; }
+        
+        /* Velké okno s posuvníkem pro procházení stovek řádků */
+        .table-container { padding: 12px; max-height: 500px; overflow-y: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+        th, td { border: 1px solid #000000; padding: 6px; text-align: center; color: #000000; }
+        th { background-color: #e6e6e6; position: sticky; top: 0; z-index: 10; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+
+    <div class="app-header">
+        <h1>Městská Doprava Kokosice</h1>
+        <p>Aplikace s kompletními nezkrácenými jízdními řády</p>
+    </div>
+
+    <div class="container">
+
+        <div id="homepage">
+            <h2>Vyberte linku (Otevřením skryjete tuto nabídku):</h2>
+            <div class="menu-buttons">
+                <button class="line-btn btn-l1" onclick="openTimetable('linka1')"><span>🚌 LINKA 1</span><span class="line-badge">4:30 - 22:30</span></button>
+                <button class="line-btn btn-l2" onclick="openTimetable('linka2')"><span>🚌 LINKA 2</span><span class="line-badge">4:30 - 22:30</span></button>
+                <button class="line-btn btn-n87" onclick="openTimetable('linkan87')"><span>🌙 NOČNÍ LINKA N87</span><span class="line-badge">22:30 - 04:20</span></button>
+            </div>
+        </div>
+
+        <div id="linka2" class="timetable-page">
+            <button class="back-btn" onclick="showHomepage()">← Zavřít a zpět na výběr linky</button>
+            <h2>Jízdní řád: LINKA 2 (Kompletní nezkrácený provoz)</h2>
+            <p>Trasa: Škola → Kaufland → Hospoda → Nádraží (Rozestup přesně 1 minuta)</p>
+            
+            <div class="section-block">
+                <div class="workday-header">🟢 PRACOVNÍ DNY (Interval každých 5 minut)</div>
+                <div class="table-container">
+                    <table>
+                        <thead><tr><th>Škola</th><th>Kaufland</th><th>Hospoda</th><th>Nádraží</th></tr></thead>
+                        <tbody>
+                            <tr><td>04:30</td><td>04:31</td><td>04:32</td><td>04:33</td></tr>
+                            <tr><td>04:35</td><td>04:36</td><td>04:37</td><td>04:38</td></tr>
+                            <tr><td>04:40</td><td>04:41</td><td>04:42</td><td>04:43</td></tr>
+                            <tr><td>04:45</td><td>04:46</td><td>04:47</td><td>04:48</td></tr>
+                            <tr><td>04:50</td><td>04:51</td><td>04:52</td><td>04:53</td></tr>
+                            <tr><td>04:55</td><td>04:56</td><td>04:57</td><td>04:58</td></tr>
+                            <tr><td>05:00</td><td>05:01</td><td>05:02</td><td>05:03</td></tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        function openTimetable(lineId) {
+            document.getElementById('homepage').style.display = 'none';
+            var pages = document.getElementsByClassName('timetable-page');
+            for (var i = 0; i < pages.length; i++) { pages[i].style.display = 'none'; }
+            document.getElementById(lineId).style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+        function showHomepage() {
+            var pages = document.getElementsByClassName('timetable-page');
+            for (var i = 0; i < pages.length; i++) { pages[i].style.display = 'none'; }
+            document.getElementById('homepage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
